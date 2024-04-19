@@ -128,6 +128,9 @@ Te dejo un link de Linkedin para que veas como hacerlo:
 
 ## Algunos usos para este comando:
 
+- **git add .**: Guarda todos los cambios realizados.
+- **git show**: Muestra todos los cambios históricos hechos.
+- **git log (nombre del archivo)**: Puedes ver el historial completo de un archivo por ejemplo.
 - **git stash save "mensaje"**: Aparta los cambios locales con un mensaje descriptivo.
 - **git stash list**: Muestra la lista de apartados (stash) actual.
 - **git stash apply**: Aplica el último cambio apartado al directorio de trabajo sin eliminarlo de la pila de apartados.
