@@ -39,7 +39,15 @@
   ejemplo:
    git config --global user.name "Matias Giorgini"
 
+  ```bash
+  git config --global user.name
+  ```
+
 2) 👉 **git config --global user.email "tu@email.com"**
+
+  ```bash
+  git config --global user.email
+  ```
 
   *Se recomienda usar el mismo correo con el que te registraste en github*
 
@@ -58,16 +66,28 @@
 
 ## Inicializar un Repositorio Git Localmente
 
+El comando para iniciar nuestro repositorio, o sea, indicarle a Git que queremos usar su sistema de control de versiones en nuestro proyecto
+
 **Recuerda estar dentro de la carpeta del proyecto siempre para ejecutar los comandos**
 
 *Ejemplo: C:/Documents/ProyectoNuevo*
 
 👉 Ejecutar el comando: **git init**
 
-- Si no usas un ide (netbeans, intellijIdea, eclipse, visual studio code), puedes crear archivos usando el comando touch index.html por ejemplo.
-- Para agregar los cambios realizados utiliza el comando: **git add .**
-- Para realizar el primer commit luego de hacer los cambios utiliza el comando: **git commit -m "Primer commit: Agregar archivos iniciales"**
+```bash
+git init
+```
 
+- Si no usas un ide (netbeans, intellijIdea, eclipse, visual studio code), puedes crear archivos usando el comando touch index.html por ejemplo.
+  
+- El comando para que nuestro repositorio sepa de la existencia de un archivo o sus últimos cambios: **git add .**
+  ```bash
+  git add .
+  ```
+- Para realizar el primer commit luego de hacer los cambios utiliza el comando: **git commit -m "Primer commit: Agregar archivos iniciales"**
+  ```bash
+  git commit -m ""
+  ```
 **Lo que se encuentra dentro de los "" es lo que tienes que modificar a gusto, recuerda ser lo más aclarativo posible, *por ejemplo* **"Primer commit: instalación de dependencias"**
 
 - Conectar repositorio Local con el repositorio remoto
@@ -82,27 +102,72 @@ Utiliza el siguiente comando para asociar el repositorio local con el remoto:
 
 👉 Ejemplo: git remote add origin https://github.com/msgiorgini77/msgiorgini77.git
 
+```bash
+git remote add origin
+```
+
 **Recuerda presionar Enter al finalizar el comando**
 
 - Crear una rama para trabajar usando el siguiente comando:
 
 👉 **git checkout -b "NombreNuevaRama"**
 
+```bash
+git checkout -b
+```
+
 - Cambia de rama existente, usando el siguiente comando:
 
 👉 **git checkout nombre-de-la-rama**
+
+```bash
+git checkout
+```
 
 - Si ya existen cambios subidos al repositorio debes utilizar el siguiente comando, para luego poder subir tus cambios con el comando push:
 
 👉 **git pull origin main**
 
+```bash
+git pull origin
+```
+
 - Subir los cambios al repositorio remoto, utilizando una rama creada cuyo nombre es main, usamos el siguiente comando:
 
 👉 **git push -u origin nombreDeLaRama**
 
-- Verificar el Estado del Repositorio, usamos el siguiente comando:
+```bash
+git push -u origin
+```
+
+- Verificar el Estado del Repositorio, usamos el siguiente comando (ofrece una descripción del estado de los archivos (untracked, ready to commit, nothing to commit):
 
 👉 **git status**
+
+```bash
+git status
+```
+
+- Si deseas eliminar archivos del index (. -r, filename) (–cached):
+
+👉 **git rm**  
+
+```bash
+git rm
+```
+
+git rm no puede usarse por sí solo, así nomás. Se debe utilizar uno de los flags para indicar a Git cómo eliminar los archivos que ya no se necesitan en la última versión del proyecto:
+
+git rm --cached : elimina los archivos del área de Staging y del próximo commit, pero los mantiene en nuestro disco duro.
+```bash
+git rm -- cached
+```
+git rm --force : elimina los archivos de Git y del disco duro. Git siempre guarda todo, por lo que podemos acceder al registro de la existencia de los archivos, de modo que podremos
+recuperarlos si es necesario (pero debemos aplicar comandos más avanzados).
+
+```bash
+git rm --force
+```
 
 - Si deseas eliminar las ramas, tienes dos opciones, pero ten cuidado que se borran todas las líneas de código que hayas hecho:
 
@@ -111,6 +176,29 @@ Utiliza el siguiente comando para asociar el repositorio local con el remoto:
 
 ## Eliminar una rama incluso si tiene cambios sin fusionar
 👉 **git branch -D nombre_de_la_rama**
+
+3) Analizar cambios en los archivos de un proyecto Git:
+
+git log: lista de manera descendente los commits realizados.
+```bash
+git log
+```
+git log --stat: además de listar los commits, muestra la cantidad de bytes añadidos y eliminados en cada uno de los archivos modificados.
+```bash
+git log --stat
+```
+git log --all --graph --decorate --oneline: muestra de manera comprimida toda la historia del repositorio de manera gráfica y embellecida.
+```bash
+git log --all --graph --decorate -- oneline
+```
+git show filename: permite ver la historia de los cambios en un archivo.
+```bash
+git show filename
+```
+git diff : compara diferencias entre en cambios confirmados.
+```bash
+git diff
+```
 
 **IMPORTANTE** Te puede salvar la vida ❤️
 
@@ -126,11 +214,28 @@ Te dejo un link de Linkedin para que veas como hacerlo:
 
 *El comando git stash en Git se utiliza para "apartar" temporalmente los cambios locales que no están listos para ser comprometidos (commited), permitiéndote trabajar en otra área del proyecto sin perder tus cambios actuales.*
 
-## Algunos usos para este comando:
+⚠️ **¿Como volver en el timpo con branches y checkout** ⚠️
+
+git reset --soft/hard: regresa al commit especificado, eliminando todos los cambios que se hicieron después de ese commit.
+```bash
+git reset --soft
+```
+```bash
+git reset hard
+```
+git checkout : permite regresar al estado en el cual se realizó un commit o branch especificado, pero no elimina lo que está en el staging area.
+```bash
+git checkout
+```
+git checkout – : deshacer cambios en un archivo en estado modified (que ni fue agregado a staging)
+```bash
+git checkout -
+```
+
+## Algunos comandos más:
 
 - **git add .**: Guarda todos los cambios realizados.
 - **git show**: Muestra todos los cambios históricos hechos.
-- **git log (nombre del archivo)**: Puedes ver el historial completo de un archivo por ejemplo.
 - **git stash save "mensaje"**: Aparta los cambios locales con un mensaje descriptivo.
 - **git stash list**: Muestra la lista de apartados (stash) actual.
 - **git stash apply**: Aplica el último cambio apartado al directorio de trabajo sin eliminarlo de la pila de apartados.
